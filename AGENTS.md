@@ -4,6 +4,89 @@ Ce document décrit les agents et skills disponibles pour ce projet fullstack Ja
 
 ## 🤖 Vue d'ensemble
 
+Ce template utilise les **Agents** et **Skills**, des standards ouverts supportés par GitHub Copilot. Les agents effectuent des tâches autonomes complexes, tandis que les skills enseignent à Copilot des tâches spécifiques répétables.
+
+---
+
+## 🧠 Agents Disponibles
+
+### `Architecte Backend`
+
+**Chemin** : `.github/agents/backend-architect.md`
+
+**But** : Vérifier la cohérence et la qualité architecturale du backend Spring Boot.
+
+**Déclenchement** : Demandes d'audit, revue d'architecture, vérification des conventions, analyse de la structure du projet backend.
+
+**Responsabilités** :
+
+#### 1. Cohérence Spring Boot
+- Vérifier la compatibilité des versions (Spring Boot 3.4.x, Java 21)
+- Valider la configuration des starters et dépendances
+- Contrôler les fichiers `application.yml` / `application.properties`
+- Vérifier les profils Spring (dev, prod, test)
+
+#### 2. Architecture MVC / Clean Architecture
+- Valider la séparation des couches (Controller → Service → Repository → Entity)
+- Vérifier l'absence de logique métier dans les controllers
+- Contrôler que les entités ne sont pas exposées directement (utilisation de DTOs)
+- Valider le pattern Interface + Implémentation pour les services
+- Vérifier l'injection de dépendances par constructeur
+
+#### 3. Conventions REST
+- Valider le nommage des endpoints (`/api/` prefix, ressources au pluriel)
+- Vérifier les codes HTTP appropriés (200, 201, 204, 400, 401, 403, 404, 500)
+- Contrôler la pagination sur les endpoints de liste
+- Valider la documentation OpenAPI/Swagger
+- Vérifier la cohérence des DTOs (Request/Response)
+
+#### 4. Gestion Configuration & Sécurité
+- Auditer la configuration Spring Security
+- Vérifier la configuration JWT (secrets, expiration, refresh tokens)
+- Contrôler les endpoints publics vs protégés
+- Valider la configuration CORS
+- Vérifier l'absence de secrets hardcodés
+- Contrôler les variables d'environnement
+
+#### 5. Gestion des Tests
+- Vérifier la présence de tests unitaires pour les services
+- Contrôler les tests d'intégration pour les controllers
+- Valider la configuration des tests (@SpringBootTest, @WebMvcTest, @DataJpaTest)
+- Vérifier l'utilisation de Testcontainers pour les tests de repository
+- Contrôler la couverture de code
+
+**Checklist d'audit** :
+
+```
+□ Structure des packages conforme (controller/, service/, repository/, entity/, dto/, config/, security/)
+□ Entités avec UUID et timestamps (createdAt, updatedAt)
+□ DTOs séparés (Request/Response) avec validation Bean Validation
+□ Services avec @Transactional approprié
+□ Controllers avec documentation OpenAPI
+□ GlobalExceptionHandler configuré
+□ Spring Security avec JWT configuré
+□ Tests unitaires présents (>80% couverture services)
+□ Tests d'intégration pour les endpoints critiques
+□ Configuration externalisée (pas de secrets hardcodés)
+```
+
+**Exemples de prompts** :
+- "Audite l'architecture backend du projet"
+- "Vérifie les conventions REST de mes controllers"
+- "Analyse la configuration de sécurité Spring"
+- "Revue la structure des tests backend"
+- "Vérifie la cohérence des couches du projet"
+
+**Outils utilisés** :
+- Analyse statique du code source
+- Vérification des dépendances Maven/Gradle
+- Inspection des fichiers de configuration
+- Analyse de la couverture de tests
+
+---
+
+## 📦 Skills Disponibles
+
 Ce template utilise les **Agent Skills**, un standard ouvert supporté par GitHub Copilot. Les skills permettent d'enseigner à Copilot comment effectuer des tâches spécifiques de manière répétable.
 
 ### Comment fonctionnent les skills
