@@ -66,6 +66,11 @@ Template de projet fullstack moderne avec **Java/Spring Boot** pour le backend e
 │   ├── nginx/                  # Configuration Nginx
 │   └── init-db/                # Scripts SQL d'initialisation
 │
+├── docs/                       # Documentation du projet
+│   ├── ARCHITECTURE.md         # Architecture technique
+│   ├── AI_CONTEXT.md           # Contexte pour les assistants IA
+│   └── features/               # Spécifications des features
+│
 ├── .github/
 │   ├── copilot-instructions.md # Instructions pour GitHub Copilot
 │   └── skills/                 # Skills Copilot par domaine
@@ -146,7 +151,18 @@ Variables critiques à changer en production :
 - `POSTGRES_PASSWORD`
 - `JWT_SECRET` (minimum 256 bits)
 
-## 📚 Documentation Copilot
+## 📚 Documentation
+
+### Documentation du projet
+
+Le répertoire `docs/` contient toute la documentation du projet :
+
+- **[docs/README.md](docs/README.md)** : Index et backlog des features
+- **[docs/features/](docs/features/)** : Spécifications détaillées de chaque feature
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** : Architecture technique du projet
+- **[docs/AI_CONTEXT.md](docs/AI_CONTEXT.md)** : Contexte pour les assistants IA
+
+### Documentation Copilot
 
 Ce template inclut des instructions pour GitHub Copilot :
 
