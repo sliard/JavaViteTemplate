@@ -179,13 +179,13 @@ Configure Spring Security avec JWT pour ce projet
 ### Docker
 ```bash
 # Logs
-docker compose logs -f [service]
+docker compose -f docker/docker-compose.yml logs -f [service]
 
 # Rebuild
-docker compose up -d --build
+docker compose -f docker/docker-compose.yml up -d --build
 
 # Nettoyage complet
-docker compose down -v
+docker compose -f docker/docker-compose.yml down -v
 ```
 
 ### Backend
@@ -215,4 +215,5 @@ npm run lint
 ## 📄 Licence
 
 MIT
+
 
