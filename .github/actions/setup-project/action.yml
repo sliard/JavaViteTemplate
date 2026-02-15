@@ -1,0 +1,40 @@
+name: 'Setup Project'
+description: 'Set up Java 21 and Node.js 22 with dependency caching for the fullstack project'
+
+inputs:
+  java-version:
+    description: 'Java version to use'
+    required: false
+    default: '21'
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '22'
+  setup-java:
+    description: 'Whether to set up Java'
+    required: false
+    default: 'true'
+  setup-node:
+    description: 'Whether to set up Node.js'
+    required: false
+    default: 'true'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up JDK ${{ inputs.java-version }}
+      if: inputs.setup-java == 'true'
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Set up Node.js ${{ inputs.node-version }}
+      if: inputs.setup-node == 'true'
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+

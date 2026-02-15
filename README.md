@@ -254,6 +254,79 @@ npm run build
 npm run lint
 ```
 
+## 🔄 CI/CD
+
+Ce template inclut des workflows GitHub Actions prêts à l'emploi :
+
+### Workflows disponibles
+
+| Workflow | Fichier | Déclencheur | Description |
+|----------|---------|-------------|-------------|
+| **CI** | `ci.yml` | Push/PR sur `main`, `develop` | Tests, lint, build |
+| **Security** | `security.yml` | Push/PR sur `main` + hebdo | CodeQL, OWASP, npm audit |
+| **Deploy Staging** | `deploy-staging.yml` | Push sur `develop` | Build & push images Docker |
+| **Release** | `release.yml` | Tags `v*` | Création de release GitHub |
+
+### CI Pipeline
+
+Le workflow CI exécute :
+
+1. **Backend Tests** (en parallèle)
+   - PostgreSQL 16 via service container
+   - `mvn verify` avec rapport de couverture JaCoCo
+
+2. **Frontend Tests** (en parallèle)
+   - `npm run lint` - Vérification du code
+   - `npm run type-check` - Vérification TypeScript
+   - `npm run test` - Tests unitaires avec couverture
+
+3. **Build** (après succès des tests)
+   - Build du JAR Spring Boot
+   - Build du bundle React/Vite
+
+4. **Docker** (sur `main` uniquement)
+   - Build des images Docker backend et frontend
+
+### Prérequis Frontend
+
+Le `package.json` doit contenir ces scripts :
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx",
+    "type-check": "tsc --noEmit",
+    "test": "vitest"
+  }
+}
+```
+
+### Secrets à configurer (déploiement)
+
+Pour le déploiement staging, configurer ces secrets dans GitHub :
+
+| Secret | Description |
+|--------|-------------|
+| `STAGING_HOST` | Adresse du serveur staging |
+| `STAGING_USER` | Utilisateur SSH |
+| `STAGING_SSH_KEY` | Clé SSH privée |
+| `STAGING_URL` | URL publique du staging |
+
+### Action composite
+
+Une action réutilisable est disponible dans `.github/actions/setup-project/` :
+
+```yaml
+steps:
+  - uses: actions/checkout@v4
+  - uses: ./.github/actions/setup-project
+    with:
+      java-version: '21'
+      node-version: '22'
+```
+
 ## 📄 Licence
 
 MIT
