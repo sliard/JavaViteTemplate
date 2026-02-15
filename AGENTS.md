@@ -85,6 +85,108 @@ Ce template utilise les **Agents** et **Skills**, des standards ouverts support�
 
 ---
 
+### `Architecte Frontend`
+
+**Chemin** : `.github/agents/frontend-architect.md`
+
+**But** : Vérifier la cohérence et la qualité architecturale du frontend React/TypeScript/Vite.
+
+**Déclenchement** : Demandes d'audit, revue d'architecture, vérification des conventions composants, analyse de la performance, validation des tests frontend.
+
+**Responsabilités** :
+
+#### 1. Cohérence React/TypeScript/Vite
+- Vérifier la compatibilité des versions (React 19, Vite 6.x, TypeScript 5.x, Node 22)
+- Valider la configuration TypeScript (mode strict activé)
+- Contrôler la configuration Vite (proxy, plugins)
+- Vérifier les variables d'environnement (préfixe `VITE_`)
+
+#### 2. Architecture Fonctionnelle
+- Valider la structure des dossiers (components, hooks, pages, services, store, types)
+- Vérifier les règles de dépendances entre couches
+- Contrôler la séparation des responsabilités
+- Détecter les anti-patterns (logique métier dans les composants)
+
+#### 3. Conventions Composants
+- Valider le nommage PascalCase des composants
+- Vérifier les exports nommés (pas de default export)
+- Contrôler le typage des props avec interfaces
+- Valider l'utilisation exclusive de functional components
+
+#### 4. Conventions Hooks
+- Vérifier le préfixe `use` obligatoire
+- Contrôler les interfaces Options/Result
+- Valider la gestion des états (loading, error, data)
+- Vérifier les dépendances useEffect/useCallback/useMemo
+
+#### 5. Services API
+- Valider l'utilisation des variables d'environnement
+- Vérifier la gestion centralisée des headers et erreurs
+- Contrôler le typage strict des requêtes/réponses
+- Valider les méthodes CRUD cohérentes
+
+#### 6. Types TypeScript
+- Vérifier l'organisation par domaine
+- Contrôler les suffixes cohérents (Request, Response, Props)
+- Valider l'utilisation de `interface` vs `type`
+- Vérifier les propriétés optionnelles
+
+#### 7. Authentification
+- Auditer l'AuthContext et Provider
+- Vérifier le hook useAuth avec validation de contexte
+- Contrôler les routes protégées et redirections
+- Valider la gestion des tokens (stockage, refresh)
+
+#### 8. Performance
+- Vérifier l'utilisation de React.memo, useMemo, useCallback
+- Contrôler le lazy loading des pages
+- Valider le code splitting
+- Analyser la taille du bundle
+
+#### 9. Accessibilité
+- Vérifier les rôles ARIA appropriés
+- Contrôler les labels sur les inputs
+- Valider la navigation au clavier
+- Vérifier le contraste des couleurs
+
+#### 10. Tests Frontend
+- Vérifier la présence de tests pour les composants
+- Contrôler les tests de hooks
+- Valider la configuration Vitest + Testing Library
+- Vérifier la couverture de code (>75%)
+
+**Checklist d'audit** :
+
+```
+□ Structure des dossiers conforme (components/, hooks/, pages/, services/, types/)
+□ TypeScript en mode strict activé
+□ Composants avec props typées et exports nommés
+□ Hooks avec gestion loading/error/data
+□ Services API avec gestion centralisée des erreurs
+□ Types organisés par domaine avec suffixes cohérents
+□ AuthContext configuré avec routes protégées
+□ Lazy loading des pages implémenté
+□ Accessibilité respectée (ARIA, labels, clavier)
+□ Tests présents (>75% couverture)
+```
+
+**Exemples de prompts** :
+- "Audite l'architecture frontend du projet"
+- "Vérifie la structure des composants React"
+- "Analyse les conventions des hooks personnalisés"
+- "Revue la configuration TypeScript"
+- "Vérifie la performance et l'accessibilité"
+- "Analyse la couverture des tests frontend"
+
+**Outils utilisés** :
+- Analyse statique TypeScript/ESLint
+- Vérification des dépendances npm
+- Inspection des fichiers de configuration (tsconfig, vite.config)
+- Analyse de la couverture de tests Vitest
+- Audit Lighthouse (performance, accessibilité)
+
+---
+
 ## 📦 Skills Disponibles
 
 Ce template utilise les **Agent Skills**, un standard ouvert supporté par GitHub Copilot. Les skills permettent d'enseigner à Copilot comment effectuer des tâches spécifiques de manière répétable.
