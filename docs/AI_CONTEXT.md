@@ -2,6 +2,14 @@
 
 > Ce fichier fournit le contexte essentiel aux assistants IA (GitHub Copilot, ChatGPT, Claude, etc.) pour comprendre et contribuer efficacement à ce projet.
 
+## 🎯 Contexte Métier
+
+> **Important pour les IA** : Pour comprendre le contexte métier spécifique de ce projet (vision, personas, domaine, MVP), consultez en priorité le fichier [`PROJECT.md`](./PROJECT.md).
+>
+> Ce fichier `AI_CONTEXT.md` décrit l'aspect **technique** du template, tandis que `PROJECT.md` décrit le **quoi** et le **pourquoi** du projet spécifique.
+
+---
+
 ## 📋 Résumé du Projet
 
 **JavaViteTemplate** est un template de projet fullstack moderne conçu pour accélérer le développement d'applications web. Il combine un backend robuste en Java/Spring Boot avec un frontend réactif en React/TypeScript.

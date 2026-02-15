@@ -32,6 +32,7 @@ Ce template utilise les **Agents** et **Skills**, des standards ouverts support�
 | 📦 Skill | frontend-routing | Configuration React Router |
 | 📦 Skill | frontend-state | State management avec Zustand |
 | 📦 Skill | docker-compose | Configuration Docker Compose |
+| 📦 Skill | project-spec | Concept et vision du projet |
 | 📦 Skill | feature-spec | Spécifications de features |
 | 📦 Skill | github-actions | Workflows CI/CD |
 
@@ -660,6 +661,28 @@ Contenu Markdown avec les instructions, exemples et guidelines.
 - "Ajoute Redis au docker-compose"
 - "Configure Nginx en reverse proxy"
 - "Optimise les Dockerfiles pour la production"
+
+---
+
+### `project-spec`
+
+**Chemin** : `.github/skills/project-spec/SKILL.md`
+
+**Déclenchement** : Définition de la vision et du concept d'un nouveau projet.
+
+**Fonctionnalités** :
+- Template PROJECT.md complet
+- Définition de la vision et du pitch
+- Documentation du domaine métier et glossaire
+- Création des personas utilisateurs
+- Périmètre MVP et priorisation des features
+- Contraintes techniques et légales
+
+**Exemples de prompts** :
+- "Aide-moi à remplir le PROJECT.md"
+- "Définis les personas pour mon application"
+- "Crée le concept du projet pour un e-commerce"
+- "Quel est le périmètre MVP recommandé ?"
 
 ---
 

@@ -157,6 +157,7 @@ Variables critiques à changer en production :
 
 Le répertoire `docs/` contient toute la documentation du projet :
 
+- **[docs/PROJECT.md](docs/PROJECT.md)** : 🎯 Vision et concept du projet
 - **[docs/README.md](docs/README.md)** : Index et backlog des features
 - **[docs/features/](docs/features/)** : Spécifications détaillées de chaque feature
 - **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** : Architecture technique du projet
@@ -169,6 +170,31 @@ Ce template inclut des instructions pour GitHub Copilot :
 - **AGENTS.md** : Description des agents disponibles et leurs capacités
 - **.github/copilot-instructions.md** : Conventions et bonnes pratiques du projet
 - **.github/skills/** : Skills spécifiques par domaine
+
+## 📝 Initialisation d'un nouveau projet
+
+Lorsque vous utilisez ce template pour créer un nouveau projet :
+
+### 1️⃣ Définir la vision du projet
+Éditer **[docs/PROJECT.md](docs/PROJECT.md)** pour décrire :
+- La vision et le pitch du projet
+- Les personas (types d'utilisateurs)
+- Le domaine métier et le glossaire
+- Les features principales et le périmètre MVP
+
+### 2️⃣ Créer les spécifications des features
+Pour chaque feature identifiée :
+1. Copier `docs/features/_TEMPLATE.md`
+2. Remplir les user stories, conception technique, etc.
+3. Mettre à jour le backlog dans `docs/README.md`
+
+### 3️⃣ Générer le code avec Copilot
+Utiliser les skills disponibles pour générer :
+- Les entités JPA (`backend-entity`)
+- Les services et repositories (`backend-service`)
+- Les controllers REST (`backend-controller`)
+- Les composants React (`frontend-component`)
+- Et plus encore...
 
 ## 🤝 Utilisation avec Copilot
 
