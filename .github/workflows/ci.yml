@@ -102,7 +102,7 @@ jobs:
 
       - name: Run tests
         working-directory: frontend
-        run: npm run test -- --coverage --watchAll=false
+        run: npm run test:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -178,7 +178,7 @@ jobs:
       - name: Build backend image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend
+          context: .
           file: ./docker/Dockerfile.backend
           push: false
           tags: app-backend:${{ github.sha }}
@@ -188,7 +188,7 @@ jobs:
       - name: Build frontend image
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend
+          context: .
           file: ./docker/Dockerfile.frontend
           push: false
           tags: app-frontend:${{ github.sha }}
