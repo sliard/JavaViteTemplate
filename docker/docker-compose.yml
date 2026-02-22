@@ -1,11 +1,14 @@
 # Docker Compose - Production
 # Lance l'ensemble de l'application : PostgreSQL + Backend + Frontend
+# Utilise le .env à la racine du projet
 
 services:
   postgres:
     image: postgres:16-alpine
     container_name: app-postgres
     restart: always
+    env_file:
+      - ../.env
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app_database}
       POSTGRES_USER: ${POSTGRES_USER:-app_user}
@@ -30,13 +33,16 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    env_file:
+      - ../.env
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-app_database}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-app_user}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
-      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      JWT_ACCESS_EXPIRATION_MS: ${JWT_ACCESS_EXPIRATION_MS:-900000}
+      JWT_REFRESH_EXPIRATION_MS: ${JWT_REFRESH_EXPIRATION_MS:-604800000}
     ports:
       - "${SERVER_PORT:-8080}:8080"
     networks:

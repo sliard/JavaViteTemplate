@@ -1,12 +1,15 @@
 # Docker Compose - Développement
 # Lance uniquement PostgreSQL pour le développement local
 # Backend et Frontend sont lancés en local (hors Docker)
+# Utilise le .env à la racine du projet
 
 services:
   postgres:
     image: postgres:16-alpine
     container_name: app-postgres-dev
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app_database}
       POSTGRES_USER: ${POSTGRES_USER:-app_user}
