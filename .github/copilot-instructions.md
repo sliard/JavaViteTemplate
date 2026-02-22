@@ -42,7 +42,7 @@ types/       → Définitions TypeScript
 
 ```java
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 @Data
 @Builder
 @NoArgsConstructor
@@ -68,10 +68,12 @@ public class Product {
 ```
 
 **Règles :**
-- Utiliser UUID comme type d'ID
+- Utiliser UUID comme type d'ID (clé primaire)
 - Toujours inclure `createdAt` et `updatedAt`
 - Utiliser `@Data` de Lombok
-- Nommer les tables au pluriel en snake_case
+- Nommer les tables au **singulier** en snake_case (ex : `product`, `order_item`)
+- Nommer les colonnes en snake_case sans majuscule (ex : `created_at`, `first_name`, `order_id`)
+- Les clés primaires sont toujours des UUID générés avec `@GeneratedValue(strategy = GenerationType.UUID)`
 
 ### DTOs
 
@@ -400,6 +402,9 @@ export const useAuth = () => {
 
 ### Backend
 - [ ] Entité avec UUID et timestamps
+- [ ] Table nommée au singulier en snake_case (`product`, `order_item`)
+- [ ] Colonnes en snake_case sans majuscule (`created_at`, `first_name`)
+- [ ] Clé primaire UUID avec `GenerationType.UUID`
 - [ ] DTO Request/Response séparés
 - [ ] Validation Bean Validation
 - [ ] Service avec interface

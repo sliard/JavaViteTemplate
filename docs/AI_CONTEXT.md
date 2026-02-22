@@ -128,6 +128,26 @@ Pages  →  Components  →  Hooks  →  Services  →  API
 
 ---
 
+## 🗄️ Conventions Base de Données (PostgreSQL)
+
+### Règles de nommage
+
+| Élément | Convention | Exemple |
+|---------|------------|---------|
+| Tables | **Singulier**, snake_case | `product`, `order_item`, `user` |
+| Colonnes | snake_case, sans majuscule | `created_at`, `first_name`, `order_id` |
+| Clés primaires | UUID | `id UUID PRIMARY KEY` |
+| Clés étrangères | `{table}_id` | `product_id`, `user_id` |
+
+### Règles générales
+
+- **Tables au singulier** : `product` (pas `products`), `order_item` (pas `order_items`)
+- **Colonnes en snake_case** : tout en minuscules, mots séparés par des underscores (`_`)
+- **Clés primaires UUID** : chaque table doit avoir une colonne `id` de type UUID, générée automatiquement
+- **Timestamps obligatoires** : chaque table doit inclure `created_at` et `updated_at`
+
+---
+
 ## 📐 Conventions de Code
 
 ### Backend (Java/Spring)
@@ -135,7 +155,9 @@ Pages  →  Components  →  Hooks  →  Services  →  API
 | Élément | Convention | Exemple |
 |---------|------------|---------|
 | Entités | UUID + timestamps | `@GeneratedValue(strategy = GenerationType.UUID)` |
-| Tables | Pluriel, snake_case | `@Table(name = "products")` |
+| Tables | Singulier, snake_case | `@Table(name = "product")` |
+| Colonnes | snake_case, sans majuscule | `created_at`, `first_name`, `order_id` |
+| Clés primaires | UUID généré | `private UUID id;` avec `GenerationType.UUID` |
 | DTOs | Records avec suffixes | `ProductRequest`, `ProductResponse` |
 | Services | Interface + Impl | `ProductService` + `ProductServiceImpl` |
 | Endpoints | `/api/` prefix | `@RequestMapping("/api/products")` |
@@ -251,6 +273,9 @@ docker compose -f docker/docker-compose.yml up -d --build
 
 ### Backend
 - [ ] Entité avec UUID et timestamps (`createdAt`, `updatedAt`)
+- [ ] Table nommée au singulier en snake_case (`product`, `order_item`)
+- [ ] Colonnes en snake_case sans majuscule (`created_at`, `first_name`)
+- [ ] Clé primaire UUID avec `@GeneratedValue(strategy = GenerationType.UUID)`
 - [ ] DTOs Request/Response séparés
 - [ ] Validation Bean Validation (`@NotBlank`, `@NotNull`, etc.)
 - [ ] Service avec interface + implémentation
