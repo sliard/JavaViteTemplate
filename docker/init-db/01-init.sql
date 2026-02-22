@@ -12,12 +12,15 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 --   - Configurer des permissions spécifiques
 
 -- Exemple de création d'un utilisateur admin (à décommenter et adapter)
--- INSERT INTO users (id, email, password, role, created_at)
+-- INSERT INTO app_user (id, email, password, first_name, last_name, role, enabled, created_at)
 -- VALUES (
 --     uuid_generate_v4(),
 --     'admin@example.com',
 --     crypt('changeme', gen_salt('bf')),
+--     'Admin',
+--     'System',
 --     'ADMIN',
+--     true,
 --     NOW()
 -- ) ON CONFLICT DO NOTHING;
 

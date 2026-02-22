@@ -134,7 +134,7 @@ Pages  →  Components  →  Hooks  →  Services  →  API
 
 | Élément | Convention | Exemple |
 |---------|------------|---------|
-| Tables | **Singulier**, snake_case | `product`, `order_item`, `user` |
+| Tables | **Singulier**, snake_case | `product`, `order_item`, `app_user` |
 | Colonnes | snake_case, sans majuscule | `created_at`, `first_name`, `order_id` |
 | Clés primaires | UUID | `id UUID PRIMARY KEY` |
 | Clés étrangères | `{table}_id` | `product_id`, `user_id` |
@@ -145,6 +145,7 @@ Pages  →  Components  →  Hooks  →  Services  →  API
 - **Colonnes en snake_case** : tout en minuscules, mots séparés par des underscores (`_`)
 - **Clés primaires UUID** : chaque table doit avoir une colonne `id` de type UUID, générée automatiquement
 - **Timestamps obligatoires** : chaque table doit inclure `created_at` et `updated_at`
+- ⚠️ **Mots réservés PostgreSQL** : éviter les mots réservés pour les noms de tables (ex : utiliser `app_user` au lieu de `user`)
 
 ---
 

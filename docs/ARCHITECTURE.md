@@ -80,7 +80,7 @@ com.example.app/
 
 ```java
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 @Data
 @Builder
 @NoArgsConstructor
@@ -113,14 +113,15 @@ public class Product {
     private List<ProductImage> images = new ArrayList<>();
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Instant createdAt;
 
     @LastModifiedDate
+    @Column(name = "updated_at")
     private Instant updatedAt;
 
     @CreatedBy
-    @Column(updatable = false)
+    @Column(name = "created_by", updatable = false)
     private String createdBy;
 }
 ```
@@ -128,7 +129,9 @@ public class Product {
 **Règles obligatoires :**
 - `@Id` avec `@GeneratedValue(strategy = GenerationType.UUID)`
 - Timestamps `createdAt` et `updatedAt` avec `@CreatedDate` / `@LastModifiedDate`
-- Table au pluriel en snake_case : `@Table(name = "products")`
+- Table au **singulier** en snake_case : `@Table(name = "product")`
+- Colonnes en snake_case sans majuscule : `@Column(name = "first_name")`
+- ⚠️ Éviter les mots réservés PostgreSQL (ex : `app_user` au lieu de `user`)
 - Lombok : `@Data`, `@Builder`, `@NoArgsConstructor`, `@AllArgsConstructor`
 - Relations LAZY par défaut : `@ManyToOne(fetch = FetchType.LAZY)`
 
@@ -1166,7 +1169,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 | Élément | Convention |
 |---------|------------|
 | ID | `UUID` avec `@GeneratedValue(strategy = GenerationType.UUID)` |
-| Tables | Pluriel, snake_case |
+| Tables | **Singulier**, snake_case (`product`, `app_user`) |
+| Colonnes | snake_case sans majuscule (`created_at`, `first_name`) |
 | Timestamps | `createdAt`, `updatedAt` avec auditing |
 | DTOs | Java Records avec suffixes `Request`/`Response` |
 | Services | Interface + Impl, `@Transactional(readOnly = true)` |

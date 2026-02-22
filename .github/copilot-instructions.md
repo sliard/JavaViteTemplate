@@ -59,10 +59,11 @@ public class Product {
     private BigDecimal price;
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Instant createdAt;
 
     @LastModifiedDate
+    @Column(name = "updated_at")
     private Instant updatedAt;
 }
 ```
@@ -74,6 +75,7 @@ public class Product {
 - Nommer les tables au **singulier** en snake_case (ex : `product`, `order_item`)
 - Nommer les colonnes en snake_case sans majuscule (ex : `created_at`, `first_name`, `order_id`)
 - Les clés primaires sont toujours des UUID générés avec `@GeneratedValue(strategy = GenerationType.UUID)`
+- ⚠️ Éviter les mots réservés PostgreSQL pour les noms de tables (ex : utiliser `app_user` au lieu de `user`)
 
 ### DTOs
 
